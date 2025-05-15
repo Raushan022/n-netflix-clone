@@ -1,5 +1,11 @@
 # n-netflix-clone
 
+- create vite app
+- configured tailwind
+- Header
+- login form
+- sign up form
+
 # Features
 
 - Login/Sign up

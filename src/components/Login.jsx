@@ -1,0 +1,66 @@
+import React, { useState } from "react";
+import Header from "./Header";
+
+const Login = () => {
+  const [isSignInForm, setIsSignInForm] = useState(true);
+
+  const toggleSignInForm = () => {
+    setIsSignInForm(!isSignInForm);
+  };
+
+  return (
+    <div className="relative h-screen w-full">
+      <div className="relative z-20">
+        <Header />
+      </div>
+
+      {/* background image */}
+      <div className="relative h-full w-full">
+        <img
+          src="https://assets.nflxext.com/ffe/siteui/vlv3/202ac35e-1fca-44f0-98d9-ea7e8211a07c/web/IN-en-20250512-TRIFECTA-perspective_688b8c03-78cb-46a6-ac1c-1035536f871a_large.jpg"
+          alt="netflix-backgroung-image"
+          className="h-full w-full object-cover"
+        />
+      </div>
+
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 z-10"></div>
+      {/* Form */}
+      <form className="w-3/12 absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-950/75 p-8 rounded-lg shadow-lg space-y-4">
+        <h1 className="text-3xl text-white font-bold py-4">
+          {isSignInForm ? "Sign In" : "Sign Up"}
+        </h1>
+        {!isSignInForm && (
+          <input
+            type="text"
+            placeholder="Enter Full Name"
+            className="w-full p-4 my-4 bg-gray-700 text-white rounded"
+          />
+        )}
+        <input
+          type="text"
+          placeholder="Enter email address"
+          className="w-full p-4 my-4 bg-gray-700 text-white rounded"
+        />
+        <input
+          type="password"
+          placeholder="Enter password"
+          className="w-full p-4 my-4 bg-gray-700 text-white rounded"
+        />
+        <button className="w-full p-4 my-6 bg-red-600 text-white rounded hover:bg-red-700">
+          {isSignInForm ? "Sign In" : "Sign Up"}
+        </button>
+        <p
+          className="py-4 my-2 text-white cursor-pointer"
+          onClick={toggleSignInForm}
+        >
+          {isSignInForm
+            ? "New to Netflix?Sign up now."
+            : "Already a user? Sign In Now."}
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
