@@ -3,8 +3,11 @@
 - create vite app
 - configured tailwind
 - Header
+- routing
 - login form
 - sign up form
+- form validation.
+- useRef hook
 
 # Features
 
