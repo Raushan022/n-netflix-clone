@@ -35,7 +35,7 @@ const Login = () => {
 
     //if there id no error message then signIn/signUp logic
     if (!isSignInForm) {
-      //signUp logic
+      // --- SIGN UP LOGIC ---
       createUserWithEmailAndPassword(
         auth,
         email.current.value,
@@ -70,20 +70,16 @@ const Login = () => {
               navigate("/browse");
             })
             .catch((error) => {
-              // An error occurred
-              // ...
+              setError(`Sign up error: ${error.code} - ${error.message}`);
             });
           //-----------then navigate to browse page after login and updating profile
           console.log(user);
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // ..
-          setError(errorCode + "-" + errorMessage);
+          setError(`Sign up error: ${error.code} - ${error.message}`);
         });
     } else {
-      //signIn logic
+      // --- SIGN IN LOGIC ---
       signInWithEmailAndPassword(
         auth,
         email.current.value,
@@ -94,13 +90,23 @@ const Login = () => {
           const user = userCredential.user;
           // ...
           console.log(user);
+          // Update user data in Redux after sign-in
+          const { uid, email, displayName, photoURL } = user;
+          dispatch(
+            addUser({
+              uid,
+              email,
+              displayName: displayName || "Guest", // Fallback to "Guest"
+              photoURL:
+                photoURL ||
+                "https://plus.unsplash.com/premium_photo-1681882593262-b80ada0342f4?q=80&w=1919&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Fallback to a default image
+            })
+          );
+
           navigate("/browse");
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          //...
-          setError(errorCode + "-" + errorMessage);
+          setError(`Sign in error: ${error.code} - ${error.message}`);
         });
     }
   };

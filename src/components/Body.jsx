@@ -35,8 +35,10 @@ const Body = () => {
           addUser({
             uid: uid,
             email: email,
-            displayName: displayName,
-            photoURL: photoURL,
+            displayName: displayName || "Guest", // Fallback for displayName
+            photoURL:
+              photoURL ||
+              "https://plus.unsplash.com/premium_photo-1681882593262-b80ada0342f4?q=80&w=1919&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Fallback for photoURL
           })
         );
       } else {
