@@ -1,6 +1,11 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase"; // Adjust the path to your firebase.js file
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -17,6 +22,50 @@ const Login = () => {
       password.current.value
     );
     setError(errorMessage);
+
+    //if there is error message, then return from here, dont go ahead
+    if (errorMessage) return;
+
+    //if there id no error message then signIn/signUp logic
+    if (!isSignInForm) {
+      //signUp logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          // ...
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+          setError(errorCode + "-" + errorMessage);
+        });
+    } else {
+      //signIn logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          //...
+          setError(errorCode + "-" + errorMessage);
+        });
+    }
   };
 
   const toggleSignInForm = () => {
