@@ -4,16 +4,23 @@ import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase"; // Adjust the path to your firebase.js file
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [error, setError] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  console.log(auth);
 
   const handleButtonClick = () => {
     // validate form data
@@ -38,6 +45,35 @@ const Login = () => {
           // Signed up
           const user = userCredential.user;
           // ...
+          //update user's profile like displayName and profile photo
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://plus.unsplash.com/premium_photo-1681882593262-b80ada0342f4?q=80&w=1919&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+              const uid = auth.currentUser.uid;
+              const email = auth.currentUser.email;
+              const displayName = auth.currentUser.displayName;
+              const photoURL = auth.currentUser.photoURL;
+              // ...
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
+          //-----------then navigate to browse page after login and updating profile
           console.log(user);
         })
         .catch((error) => {
@@ -58,6 +94,7 @@ const Login = () => {
           const user = userCredential.user;
           // ...
           console.log(user);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
