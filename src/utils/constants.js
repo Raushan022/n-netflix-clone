@@ -3,3 +3,11 @@ export const NETFLIX_LOGO = "https://help.nflxext.com/helpcenter/OneTrust/oneTru
 export const NETFLIX_BACKGROUNG_IMAGE = "https://assets.nflxext.com/ffe/siteui/vlv3/202ac35e-1fca-44f0-98d9-ea7e8211a07c/web/IN-en-20250512-TRIFECTA-perspective_688b8c03-78cb-46a6-ac1c-1035536f871a_large.jpg"
 
 export const USER_AVATAR = "https://plus.unsplash.com/premium_photo-1681882593262-b80ada0342f4?q=80&w=1919&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
+export const API_OPTIONS = {
+   method: 'GET',
+   headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZTcxMmM1YTMwYjhkZTc2NjhjYjJlZmFmM2NiYTEwYyIsIm5iZiI6MTcyNzU4ODc0OC4xOTEsInN1YiI6IjY2ZjhlOThjMGY2ZmEyY2ZjZTVmNWIzYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.poBPBVwKHt26Dcb8Dc7-GUMijnBA8lBEOXA7XKyCCJs'
+   }
+};
