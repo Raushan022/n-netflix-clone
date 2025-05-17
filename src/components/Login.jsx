@@ -9,6 +9,7 @@ import {
 import { auth } from "../utils/firebase"; // Adjust the path to your firebase.js file
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { NETFLIX_BACKGROUNG_IMAGE, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -45,8 +46,7 @@ const Login = () => {
           //update user's profile like displayName and profile photo
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://plus.unsplash.com/premium_photo-1681882593262-b80ada0342f4?q=80&w=1919&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               // Profile updated!
@@ -90,9 +90,7 @@ const Login = () => {
               uid,
               email,
               displayName: displayName || "Guest", // Fallback to "Guest"
-              photoURL:
-                photoURL ||
-                "https://plus.unsplash.com/premium_photo-1681882593262-b80ada0342f4?q=80&w=1919&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Fallback to a default image
+              photoURL: photoURL || USER_AVATAR, // Fallback to a default image
             })
           );
         })
@@ -115,7 +113,7 @@ const Login = () => {
       {/* background image */}
       <div className="relative h-full w-full">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/202ac35e-1fca-44f0-98d9-ea7e8211a07c/web/IN-en-20250512-TRIFECTA-perspective_688b8c03-78cb-46a6-ac1c-1035536f871a_large.jpg"
+          src={NETFLIX_BACKGROUNG_IMAGE}
           alt="netflix-backgroung-image"
           className="h-full w-full object-cover"
         />
