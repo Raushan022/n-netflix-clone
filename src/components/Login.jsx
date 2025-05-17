@@ -7,20 +7,17 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase"; // Adjust the path to your firebase.js file
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [error, setError] = useState();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
-  console.log(auth);
 
   const handleButtonClick = () => {
     // validate form data
@@ -67,13 +64,10 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               setError(`Sign up error: ${error.code} - ${error.message}`);
             });
-          //-----------then navigate to browse page after login and updating profile
-          console.log(user);
         })
         .catch((error) => {
           setError(`Sign up error: ${error.code} - ${error.message}`);
@@ -89,7 +83,6 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           // ...
-          console.log(user);
           // Update user data in Redux after sign-in
           const { uid, email, displayName, photoURL } = user;
           dispatch(
@@ -102,8 +95,6 @@ const Login = () => {
                 "https://plus.unsplash.com/premium_photo-1681882593262-b80ada0342f4?q=80&w=1919&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Fallback to a default image
             })
           );
-
-          navigate("/browse");
         })
         .catch((error) => {
           setError(`Sign in error: ${error.code} - ${error.message}`);
