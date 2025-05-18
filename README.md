@@ -23,6 +23,15 @@
 - login and get access token
 - go to doumentation
 - get data from nowPlaying movies list api
+- custom hook for nowPlaying movies
+- create movie slice
+- update store with movies data
+- planning for main and secondary container
+- fetch data for trailer video
+- update store with trailer video data
+- custon hook for trailer video
+- embeded the youtube video and make it autoplay and mute
+- tailwind classes to make main container look awesome
 
 # Features
 
