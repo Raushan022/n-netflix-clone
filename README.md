@@ -32,6 +32,12 @@
 - custon hook for trailer video
 - embeded the youtube video and make it autoplay and mute
 - tailwind classes to make main container look awesome
+- build secondary component
+- build movie list
+- build movie card
+- TMDB image cdn url
+- made ui look better with tailwind css
+- usePopularMovies custom hook
 
 # Features
 
