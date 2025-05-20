@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { NETFLIX_LOGO, USER_AVATAR } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -53,15 +54,26 @@ const Header = () => {
         console.log(error);
       });
   };
+
+  const handleGptSearchClick = () => {
+    //Toggle GPT Search
+    dispatch(toggleGptSearchView());
+  };
   return (
     <div className="absolute z-10 w-full px-12 py-2 bg-gradient-to-b from-black to-transparent flex justify-between">
       <img className="w-32 h-12" src={NETFLIX_LOGO} alt="netflix-logo" />
       {user && (
-        <div className="flex p-2">
+        <div className="flex p-2 items-center">
+          <button
+            className="py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg cursor-pointer"
+            onClick={handleGptSearchClick}
+          >
+            GPT Search
+          </button>
           <img src={user.photoURL} alt="user-icon-logo" className="w-10 h-10" />
           <button
             onClick={handleSignOut}
-            className="mb-4 pl-2 font-bold text-white underline cursor-pointer"
+            className=" pl-2 font-bold text-white underline cursor-pointer"
           >
             Sign Out
           </button>
