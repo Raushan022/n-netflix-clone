@@ -41,6 +41,14 @@
 - GPT search page
 - GPT search bar
 - multi-language feature
+- get Open API call
+- gpt search api call
+- fetch gpt movie suggestions from tmdb
+- created gpt slice and added data
+- reused MovieList component to make moviesuggestion container
+- added .env file
+- memoization
+- made our site responsive
 
 # Features
 

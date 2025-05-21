@@ -71,10 +71,14 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
   return (
-    <div className="absolute z-10 w-full px-12 py-2 bg-gradient-to-b from-black to-transparent flex justify-between">
-      <img className="w-32 h-12" src={NETFLIX_LOGO} alt="netflix-logo" />
+    <div className="absolute z-10 w-full px-12 py-2 bg-gradient-to-b from-black to-transparent flex justify-between flex-col md:flex-row">
+      <img
+        className="w-32 h-12 mx-auto md:mx-0"
+        src={NETFLIX_LOGO}
+        alt="netflix-logo"
+      />
       {user && (
-        <div className="flex p-2 items-center">
+        <div className="flex justify-between p-2 items-center">
           {showGptSearch && (
             <select
               className="p-2 m-2 bg-gray-800 text-white"
@@ -97,7 +101,11 @@ const Header = () => {
           >
             {showGptSearch ? "Homepage" : "GPT Search"}
           </button>
-          <img src={user.photoURL} alt="user-icon-logo" className="w-10 h-10" />
+          <img
+            src={user.photoURL}
+            alt="user-icon-logo"
+            className="hidden md:block w-10 h-10"
+          />
           <button
             onClick={handleSignOut}
             className=" pl-2 font-bold text-white underline cursor-pointer"
